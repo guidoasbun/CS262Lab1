@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <string>
+#include <iomanip>
 
 #include "functions.h"
 
@@ -14,37 +15,35 @@ int main()
 
     // Implement your main program here using the functions declared in funtions.h
     // getInput
-    cout << "getInput" << endl;
-    double res = getInput("Enter -3, -6, 5.5: ");
-    cout << "Expected 5.5" << endl;
-    cout << "Actual: " << res << endl;
-    cout << endl << endl;
 
-    // convertDistance
-    cout << "10 inches should be 0.25 meters" << endl;
-    cout << "\t--> Actual : " << convertDistance(10) << endl;
+    const int NUMBER_OF_VEHICLES = 4;
+    const double DISTANCE_BETWEEN_WIRES = getInput("Enter the distance between the wires (inches): ");
+    const double CONVERTED_DISTANCE = convertDistance(DISTANCE_BETWEEN_WIRES);
 
-    cout << "36.5 inches should be 0.9125 meters" << endl;
-    cout << "\t--> Actual : " << convertDistance(36.5) << endl;
+    double vehicleTime[NUMBER_OF_VEHICLES];
 
+    for (double & vehicle : vehicleTime)
+    {
+        vehicle = getInput("Enter time recorded (seconds): ");
+    }
 
-    // convertSpeed
-    cout << "100 meters/second should be 223.7 mph" << endl;
-    cout << "\t--> Actual : " << convertSpeed(100) << endl;
+    cout << "\nVehicle" << setw(20)
+        << "Time (seconds)" << setw(20)
+        << "Speed (m/s)" << setw(20)
+        << "Speed (mph)" << endl;
 
-    cout << "20.4 meters/second should be 45.63 mph" << endl;
-    cout << "\t--> Actual : " << convertSpeed(20.4) << endl;
+    for (int i = 0; i < NUMBER_OF_VEHICLES; ++i)
+    {
+        const double METERS_PER_SECOND = getSpeed(CONVERTED_DISTANCE, vehicleTime[i]);
+        const double MILES_PER_HOUR = convertSpeed(METERS_PER_SECOND);
 
-
-    // getSpeed
-    cout << "Moving 1 m in 1 second should be 1.0 m/s" << endl;
-    cout << "\t--> Actual: " << getSpeed(1, 1) << endl;
-
-    cout << "Moving 30 m in 15 seconds should be 2.0 m/s" << endl;
-    cout << "\t--> Actual: " << getSpeed(30, 15) << endl;
-
-    cout << "Moving 922.5 m in 20.5 seconds should be 45 m/s" << endl;
-    cout << "\t--> Actual: " << getSpeed(922.5, 20.5) << endl;
+        cout << fixed << showpoint << setprecision(2);
+        cout << (i + 1)
+            << setw(26) << vehicleTime[i]
+            << setw(20) << METERS_PER_SECOND
+            << setw(20) << MILES_PER_HOUR
+            << endl;
+    }
 
     return 0;
 }

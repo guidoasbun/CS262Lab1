@@ -25,12 +25,14 @@ double getInput(const string &prompt)
 
 double convertDistance(double inches)
 {
-    return (inches * 0.025);
+    const double METERS_IN_INCH = 0.025;
+    return (inches * METERS_IN_INCH);
 }
 
 double convertSpeed(double metersPerSec)
 {
-    return (metersPerSec * 2.2374);
+    const double MILES_PER_HOUR = 2.2374;
+    return (metersPerSec * MILES_PER_HOUR);
 }
 
 double getSpeed(double distance, double seconds)
