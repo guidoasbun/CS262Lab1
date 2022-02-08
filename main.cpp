@@ -1,9 +1,9 @@
-//
-// Created by Guido Asbun on 1/31/22.
-//
+// Guido Asbun
+// CS262 
+// Lab 1: Speed Sensors
+// 07 February 2022
 
 #include <iostream>
-#include <string>
 #include <iomanip>
 
 #include "functions.h"
